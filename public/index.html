@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>CoEditor Demo</title>
+  <style>
+    co-editor {
+      height: 300px;
+    }
+  </style>
+</head>
+
+<body>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="co-editor.min.js"></script>
+
+  <h1>CoEditor With Socket.IO Demo</h1>
+  <input placeholder="username">
+  <co-editor></co-editor>
+
+  <script>
+    const socket = io();
+    const editor = document.querySelector('co-editor');
+
+    // Send updates to the socket:
+    editor.addEventListener('update', event => socket.emit('update', event.detail));
+
+    // Receive updates from the socket:
+    socket.on('update', message => editor.receive(message));
+
+    socket.on('set-master', () => {
+      editor.master = true;
+      socket.on('request-join-message', (data, callback) => {
+        callback(editor.generateJoinMessage());
+      });
+    });
+
+    socket.on('master-disconnected', () => {
+      socket.disconnect();
+      alert('The document owner disconnected. Connection disabled.');
+    });
+
+    document.querySelector('input').addEventListener('input', e => {
+      editor.username = e.srcElement.value;
+    });
+  </script>
+</body>
+
+</html>
