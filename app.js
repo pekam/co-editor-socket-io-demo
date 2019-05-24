@@ -21,12 +21,10 @@ io.on('connection', socket => {
 
 function joinSession(socket) {
   if (!master) {
-    socket.emit('set-master');
+    socket.emit('init-session');
     master = socket;
   } else {
-    master.emit('request-join-message', null, response => {
-      socket.emit('update', response);
-    });
+    socket.emit('join-session');
   }
 }
 

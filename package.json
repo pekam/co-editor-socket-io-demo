@@ -13,7 +13,7 @@
   "author": "Pekka Maanpää",
   "license": "ISC",
   "dependencies": {
-    "co-editor": "1.0.0-alpha2",
+    "co-editor": "^1.0.0-alpha4",
     "express": "^4.16.4",
     "socket.io": "^2.2.0"
   }
