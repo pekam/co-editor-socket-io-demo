@@ -7,3 +7,7 @@ This is a real-time collaborative text editor app. Its purpose is to demonstrate
 npm install
 node app.js
 ```
+
+### Command line arguments (optional):
+- `--port`: the port to use, defaults to `3000`
+- `--delay`: the delay added to the message passing in milliseconds, defaults to `5000`
