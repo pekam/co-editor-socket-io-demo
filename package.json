@@ -15,7 +15,7 @@
   "dependencies": {
     "co-editor": "^1.0.0-alpha4",
     "express": "^4.16.4",
-    "socket.io": "^2.2.0",
+    "socket.io": "^2.5.0",
     "yargs": "^13.3.0"
   }
 }
